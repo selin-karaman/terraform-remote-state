@@ -1,1 +1,15 @@
+services:
+  localstack:
+    image: localstack/localstack:4.14.0
+    container_name: terraform-remote-state-localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - DEBUG=0
+    volumes:
+      - localstack-data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
 
+volumes:
+  localstack-data:
